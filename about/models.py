@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 
 
@@ -7,7 +8,12 @@ from django.utils import timezone
 
 
 class About(models.Model):
+
+    """
+    Stores a single about me text
+    """
     title = models.CharField(max_length=200)
+    profile_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     updated_on = models.DateTimeField(auto_now=True)
     
@@ -17,6 +23,9 @@ class About(models.Model):
     
 
 class CollaborateRequest(models.Model):
+    """
+    Stores a single collaboration request message
+    """
     name = models.CharField(max_length=200)
     email = models.EmailField()
     message = models.TextField()
